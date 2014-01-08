@@ -24,9 +24,8 @@ app.get '/weather', (req, res) ->
       res.send
         currentTemp: result.main.temp
   else
-    res.send "FUCK"
-  #request()
-
+    res.send 400,
+      error: "That's no good."
 
 app.get '/beer', (req, res) ->
   bdb.search.all
