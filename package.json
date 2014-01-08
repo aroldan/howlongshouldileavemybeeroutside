@@ -1,0 +1,18 @@
+{
+  "author": "Anthony",
+  "name": "beercooling",
+  "description": "Beer coolin gapp",
+  "version": "0.0.0",
+  "dependencies": {
+    "jade": "~1.1.0",
+    "express": "~3.4.7",
+    "request": "~2.30.0",
+    "coffee-script": "~1.6.3",
+    "brewerydb-node": "~0.0.1"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
