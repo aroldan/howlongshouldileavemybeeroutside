@@ -9,6 +9,7 @@ bdb = new breweryDb '9653a5088097ca4b1bed72c60a663b08'
 
 app.set('view engine', 'jade')
 app.set('views', __dirname + '/views')
+app.enable('trust proxy')
 
 app.use(express.logger())
 app.use('/static', express.static(__dirname + '/static'))
@@ -34,5 +35,4 @@ app.get '/beer', (req, res) ->
     console.log result
     res.send result
 
-
-app.listen(8000)
+app.listen(9000)
