@@ -8,7 +8,8 @@
     "express": "~3.4.7",
     "request": "~2.30.0",
     "coffee-script": "~1.6.3",
-    "brewerydb-node": "~0.0.1"
+    "brewerydb-node": "~0.0.1",
+    "markdown": "~0.5.0"
   },
   "devDependencies": {},
   "optionalDependencies": {},

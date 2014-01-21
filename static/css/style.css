@@ -4,6 +4,10 @@ body {
   /* The html and body elements cannot have any padding or margin. */
 }
 
+header h1 {
+  font-size: 3.0em;
+}
+
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
@@ -20,7 +24,6 @@ body {
   background-color: #f5f5f5;
 }
 
-#content {
-  font-size: 2em;
-  font-weight: bold
+#content .beerresults {
+  font-size: 1.75em;
 }

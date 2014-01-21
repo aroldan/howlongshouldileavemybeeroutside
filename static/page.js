@@ -1,7 +1,7 @@
 (function() {
-  var contentDiv, positionError, timeToTemp, weatherLookup;
+  var BEER_MESSAGES, contentDiv, positionError, randomBeerMessage, timeToTemp, weatherLookup;
 
-  contentDiv = $('#content');
+  contentDiv = $('#content .beerresults');
 
   timeToTemp = function(startTemp, ambientTemp, targetTemp, k) {
     return Math.log((startTemp - ambientTemp) / (targetTemp - ambientTemp)) / k;
@@ -17,13 +17,19 @@
     return contentDiv.html(msg);
   };
 
-  weatherLookup = function(lat, long) {
+  BEER_MESSAGES = ["Crack 'em.", "Aww yeah.", "You'll be in sudsville in no time.", "Beer town!", "I'll drink to that."];
+
+  randomBeerMessage = function() {
+    return BEER_MESSAGES[Math.floor(Math.random() * BEER_MESSAGES.length)];
+  };
+
+  weatherLookup = function(lat, lon) {
     var qProm;
     contentDiv.html("Looking up the weather...");
     qProm = $.ajax("/weather", {
       data: {
-        lat: pos.coords.latitude,
-        lon: pos.coords.longitude
+        lat: lat,
+        lon: lon
       }
     });
     return qProm.then(function(result) {
@@ -35,7 +41,7 @@
       } else {
         mins = Math.floor(time / 60);
         secs = Math.floor(time % 60);
-        msg = "About " + mins + " minutes, " + secs + " seconds oughta do it.";
+        msg = "" + mins + " minutes, " + secs + " seconds oughta do it. " + (randomBeerMessage());
       }
       return contentDiv.html(msg);
     });

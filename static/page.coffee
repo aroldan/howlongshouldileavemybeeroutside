@@ -1,4 +1,4 @@
-contentDiv = $('#content')
+contentDiv = $('#content .beerresults')
 
 timeToTemp = (startTemp, ambientTemp, targetTemp, k) ->
   Math.log((startTemp - ambientTemp)/(targetTemp - ambientTemp))/k
@@ -12,13 +12,23 @@ positionError = (err) ->
 
   contentDiv.html(msg)
 
-weatherLookup = (lat, long) ->
+BEER_MESSAGES = [
+  "Crack 'em."
+  "Aww yeah."
+  "You'll be in sudsville in no time."
+  "Beer town!"
+  "I'll drink to that."
+]
+
+randomBeerMessage = -> BEER_MESSAGES[Math.floor(Math.random() * BEER_MESSAGES.length)]
+
+weatherLookup = (lat, lon) ->
   contentDiv.html("Looking up the weather...")
     
   qProm = $.ajax "/weather",
     data:
-      lat: pos.coords.latitude
-      lon: pos.coords.longitude
+      lat: lat
+      lon: lon
 
   qProm.then (result) ->
     temp = result.currentTemp
@@ -30,7 +40,7 @@ weatherLookup = (lat, long) ->
     else
       mins = Math.floor(time/60)
       secs = Math.floor(time % 60)
-      msg = "About #{mins} minutes, #{secs} seconds oughta do it."
+      msg = "#{mins} minutes, #{secs} seconds oughta do it. #{randomBeerMessage()}"
 
     contentDiv.html(msg)
 
