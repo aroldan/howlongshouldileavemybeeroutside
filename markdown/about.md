@@ -10,6 +10,10 @@ howlongshouldileavethisbeeroutside.biz uses gross assumptions, geolocation, and 
 
 It's probably highly inaccurate and was calibrated with a High Life I left outside once and measured with a Thermapen.
 
+### What else?
+
+If you think this is cool, you'll probably really like [Onthebar](http://www.onthebar.com/). Find out when your favorite bartenders are working on your iPhone - and I bet they even have beer cold for you already.
+
 ### Thanks!
 
 Artwork by [Maureen Hautaniemi](http://about.me/maureenh).
