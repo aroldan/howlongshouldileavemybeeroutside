@@ -3,6 +3,7 @@ app = express()
 
 request = require('request')
 markdown = require('markdown').markdown;
+fs = require('fs')
 
 app.set('view engine', 'jade')
 app.set('views', __dirname + '/views')
@@ -15,8 +16,7 @@ app.use(express.logger())
 app.use('/static', express.static(__dirname + '/static'))
 
 serveMarkdownRoute = (path, mdfilename, title) ->
-  mdSrc = "Here's some *crazy* shit"
-
+  mdSrc = fs.readFileSync "markdown/#{mdfilename}", 'utf8'
   mdContent = markdown.toHTML(mdSrc)
 
   app.get path, (req, res) ->
@@ -24,15 +24,11 @@ serveMarkdownRoute = (path, mdfilename, title) ->
       title: title
       mdContent: mdContent
 
-serveMarkdownRoute "/test", "test.md", 'yeee'
+serveMarkdownRoute "/about", "about.md", 'About'
 
 app.get '/', (req, res) ->
   res.render 'main',
     title: "Seriously though how long."
-
-app.get '/about', (req, res) ->
-  res.render "about",
-    title: "About"
 
 app.get "/why", (req, res) ->
   res.render "why",
