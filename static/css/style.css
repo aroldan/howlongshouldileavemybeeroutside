@@ -8,6 +8,10 @@ header h1 {
   font-size: 3.0em;
 }
 
+.twitter-stuff {
+  margin-top: 3em;
+}
+
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
