@@ -7,6 +7,8 @@
     return Math.log((startTemp - ambientTemp) / (targetTemp - ambientTemp)) / k;
   };
 
+  window.ttt = timeToTemp;
+
   positionError = function(err) {
     var msg;
     window.badtimes = err;
@@ -36,7 +38,7 @@
       var mins, msg, secs, temp, time;
       temp = result.currentTemp;
       time = timeToTemp(22, temp, 2, .0007);
-      if (isNaN(time) || time > 2 * 60 * 60) {
+      if (temp > 2 || isNaN(time) || time > 2 * 60 * 60) {
         msg = "It's too damn warm out. Put that beer in the fridge.";
       } else {
         mins = Math.floor(time / 60);
