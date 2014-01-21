@@ -12,23 +12,29 @@ positionError = (err) ->
 
   contentDiv.html(msg)
 
-if navigator.geolocation
-  navigator.geolocation.getCurrentPosition (pos) ->
-    window.p = pos
-    contentDiv.html("Looking up the weather...")
+weatherLookup = (lat, long) ->
+  contentDiv.html("Looking up the weather...")
     
-    qProm = $.ajax "/weather",
-      data:
-        lat: pos.coords.latitude
-        lon: pos.coords.longitude
+  qProm = $.ajax "/weather",
+    data:
+      lat: pos.coords.latitude
+      lon: pos.coords.longitude
 
-    qProm.then (result) ->
-      temp = result.currentTemp
+  qProm.then (result) ->
+    temp = result.currentTemp
 
-      time = timeToTemp(22, temp, 2, .0007)
+    time = timeToTemp(22, temp, 2, .0007)
 
+    if isNaN(time) || time > 2 * 60 * 60
+      msg = "It's too damn warm out. Put that beer in the fridge."
+    else
       mins = Math.floor(time/60)
       secs = Math.floor(time % 60)
+      msg = "About #{mins} minutes, #{secs} seconds oughta do it."
 
-      contentDiv.html("#{mins} minutes, #{secs} seconds")
+    contentDiv.html(msg)
+
+if navigator.geolocation
+  navigator.geolocation.getCurrentPosition (pos) ->
+    weatherLookup pos.coords.latitude, pos.coords.longitude
   , positionError
