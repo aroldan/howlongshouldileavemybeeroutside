@@ -1,16 +1,20 @@
 (function() {
   var contentDiv, positionError, timeToTemp;
 
-  console.log("yeahhhh");
-
   contentDiv = $('#content');
 
   timeToTemp = function(startTemp, ambientTemp, targetTemp, k) {
     return Math.log((startTemp - ambientTemp) / (targetTemp - ambientTemp)) / k;
   };
 
-  positionError = function() {
-    return console.log("couldn't get location");
+  positionError = function(err) {
+    var msg;
+    window.badtimes = err;
+    msg = "Couldn't find you. Make sure to allow geolocation.";
+    if (err.code === err.PERMISSION_DENIED) {
+      msg = "You have to let us know where you are!";
+    }
+    return contentDiv.html(msg);
   };
 
   if (navigator.geolocation) {

@@ -2,15 +2,36 @@ doctype html
 html
   head
     title #{title} - My Site
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css')
     link(rel='stylesheet', href='/static/css/style.css')
   body
-    header
-      h1 HowLongShouldILeaveMyBeerOutsi.de
-    .container
-      #content
-        block content
+    #wrap
+      .container
+        header
+          h1 HOW LONG SHOULD I LEAVE MY BEER OUTSIDE
+        #content
+          block content
     footer
-      block footer
+      .container
+        nav.navbar.navbar-default(role="navigation")
+          .navbar-header
+            button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href="#") How long?
+
+          // Collect the nav links, forms, and other content for toggling
+          .collapse.navbar-collapse.navbar-ex1-collapse
+            ul.nav.navbar-nav
+              li
+                a(href="#") About
+              li
+                a(href="#") Link
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js')
     script(type='text/javascript', src='/static/page.js')
     

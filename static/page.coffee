@@ -1,12 +1,16 @@
-console.log "yeahhhh"
-
 contentDiv = $('#content')
 
 timeToTemp = (startTemp, ambientTemp, targetTemp, k) ->
   Math.log((startTemp - ambientTemp)/(targetTemp - ambientTemp))/k
 
-positionError = ->
-  console.log "couldn't get location"
+positionError = (err) ->
+  window.badtimes = err
+  msg = "Couldn't find you. Make sure to allow geolocation."
+
+  if err.code is err.PERMISSION_DENIED
+    msg = "You have to let us know where you are!"
+
+  contentDiv.html(msg)
 
 if navigator.geolocation
   navigator.geolocation.getCurrentPosition (pos) ->
