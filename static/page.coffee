@@ -3,8 +3,6 @@ contentDiv = $('#content .beerresults')
 timeToTemp = (startTemp, ambientTemp, targetTemp, k) ->
   Math.log((startTemp - ambientTemp)/(targetTemp - ambientTemp))/k
 
-window.ttt = timeToTemp
-
 positionError = (err) ->
   window.badtimes = err
   msg = "Couldn't find you. Make sure to allow geolocation."

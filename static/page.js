@@ -7,8 +7,6 @@
     return Math.log((startTemp - ambientTemp) / (targetTemp - ambientTemp)) / k;
   };
 
-  window.ttt = timeToTemp;
-
   positionError = function(err) {
     var msg;
     window.badtimes = err;
