@@ -4,9 +4,6 @@ app = express()
 cooling = require("./util/cooling")
 request = require('request')
 
-breweryDb = require('brewerydb-node')
-bdb = new breweryDb '9653a5088097ca4b1bed72c60a663b08'
-
 app.set('view engine', 'jade')
 app.set('views', __dirname + '/views')
 app.enable('trust proxy')
@@ -27,12 +24,5 @@ app.get '/weather', (req, res) ->
   else
     res.send 400,
       error: "That's no good."
-
-app.get '/beer', (req, res) ->
-  bdb.search.all
-    q: 'dogfish'
-  , (err, result) ->
-    console.log result
-    res.send result
 
 app.listen(9000)
