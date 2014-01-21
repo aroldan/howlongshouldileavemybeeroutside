@@ -1,5 +1,5 @@
 (function() {
-  var BEER_MESSAGES, contentDiv, positionError, randomBeerMessage, timeToTemp, weatherLookup;
+  var BEER_MESSAGES, contentDiv, lat, lon, positionError, randomBeerMessage, timeToTemp, weatherLookup, _ref;
 
   contentDiv = $('#content .beerresults');
 
@@ -49,7 +49,10 @@
     });
   };
 
-  if (navigator.geolocation) {
+  if (location.search.indexOf("ll=") !== -1) {
+    _ref = location.search.split("ll=")[1].split(","), lat = _ref[0], lon = _ref[1];
+    weatherLookup(lat, lon);
+  } else if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(pos) {
       return weatherLookup(pos.coords.latitude, pos.coords.longitude);
     }, positionError);

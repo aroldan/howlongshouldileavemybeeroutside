@@ -46,7 +46,10 @@ weatherLookup = (lat, lon) ->
 
     contentDiv.html(msg)
 
-if navigator.geolocation
+if location.search.indexOf("ll=") isnt -1
+  [lat, lon] = location.search.split("ll=")[1].split(",")
+  weatherLookup lat, lon
+else if navigator.geolocation
   navigator.geolocation.getCurrentPosition (pos) ->
     weatherLookup pos.coords.latitude, pos.coords.longitude
   , positionError
